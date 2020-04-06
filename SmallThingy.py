@@ -11,12 +11,15 @@ bad_values = []
 # Trees Check:
 # X = 425 | Y = 625
 
+#FOV - The distance on which the dinosaur should see the obstacle and jump
+fov = 350
+
 def fetch_obstacle():
     """
     Chckes of obstecles in a certein place, still need to find the perfect spot.
     :return:
     """
-    verify_obst = (dino_location[0] + 200, dino_location[1], dino_location[0] + 450, dino_location[1] + 80)
+    verify_obst = (dino_location[0], dino_location[1], dino_location[0] + fov, dino_location[1] + 90)
     box = ImageGrab.grab(verify_obst)
     gray_box = ImageOps.grayscale(box)
     colors_array = array(gray_box.getcolors())
@@ -60,7 +63,7 @@ def start_this_thing():
         data = fetch_obstacle()
         print(data)
         check_for_restart()
-        if data > 20033:
+        if data > 31566:
             pyautogui.keyDown('space')
         if check_for_restart():
             print(f'Ohhhhhh... Should have jumped on {data}')
